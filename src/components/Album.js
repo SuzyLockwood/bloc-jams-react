@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import albumData from './../data/albums';
 
 class Album extends Component {
@@ -33,7 +34,15 @@ class Album extends Component {
             <col id="song-title-column" />
             <col id="song-duration-column" />
           </colgroup>
-          <tbody />
+          <tbody className="song-details">
+            {this.state.album.songs.map((song, index) => (
+              <Link to={`/album/${song.slug}`} key={index}>
+                <tr id="song-number-row">{index + 1}</tr>
+                <tr id="song-title-row">{song.title}</tr>
+                <tr id="song-duration-row">{song.duration}</tr>
+              </Link>
+            ))}
+          </tbody>
         </table>
       </section>
     );
