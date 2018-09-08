@@ -34,13 +34,13 @@ class Album extends Component {
             <col id="song-title-column" />
             <col id="song-duration-column" />
           </colgroup>
-          <tbody className="song-details">
+          <tbody>
             {this.state.album.songs.map((song, index) => (
-              <Link to={`/album/${song.slug}`} key={index}>
-                <tr id="song-number-row">{index + 1}</tr>
-                <tr id="song-title-row">{song.title}</tr>
-                <tr id="song-duration-row">{song.duration}</tr>
-              </Link>
+              <tr className="song-details">
+                <td id="song-number-row">{index + 1}</td>
+                <td id="song-title-row">{song.title}</td>
+                <td id="song-duration-row">{song.duration}</td>
+              </tr>
             ))}
           </tbody>
         </table>
