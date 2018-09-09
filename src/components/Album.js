@@ -46,6 +46,29 @@ class Album extends Component {
     }
   }
 
+  play() {
+    this.audioElement.play();
+    this.setState({ isPlaying: true });
+  }
+
+  pause() {
+    this.audioElement.pause();
+    this.setState({ isPlaying: false });
+  }
+
+  handleAudioBtnIcon(song, index) {
+    const isSameSong = this.state.currentSong === song;
+    if (this.state.isPlaying && isSameSong) {
+      return <span className="ion-pause" />;
+    } else if (this.state.isHovering === index + 1) {
+      return <span className="ion-play" />;
+    } else if (!this.state.isPlaying && isSameSong) {
+      return <span className="ion-play" />;
+    } else {
+      return <span className="song-number"> {index + 1} </span>;
+    }
+  }
+
   render() {
     return (
       <section className="album">
@@ -73,8 +96,12 @@ class Album extends Component {
                 className="song"
                 key={index}
                 onClick={() => this.handleSongClick(song)}
+                onMouseEnter={() => this.setState({ isHovering: index + 1 })}
+                onMouseLeave={() => this.setState({ isHovering: false })}
               >
-                <td id="song-number-row">{index + 1}</td>
+                <td id="song-number-row">
+                  {this.handleAudioBtnIcon(song, index)}
+                </td>
                 <td id="song-title-row">{song.title}</td>
                 <td id="song-duration-row">{song.duration}</td>
               </tr>
