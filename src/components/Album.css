@@ -1,0 +1,38 @@
+.album {
+  width: 500px;
+  margin: 0 auto;
+}
+
+#song-list {
+  border: black solid 2px;
+}
+
+.album-details {
+  text-align: center;
+}
+
+#album-title {
+  font-family: 'Times New Roman';
+  font-size: 80px;
+  margin: 0;
+}
+
+.artist {
+  font-family: 'Times New Roman';
+  font-size: 40px;
+  font-style: italic;
+  margin-top: 1px;
+  margin-bottom: 10px;
+}
+
+img {
+  width: 496px;
+  margin: 0 auto;
+  border: black solid 5px;
+}
+
+td {
+  list-style: none;
+  font-family: 'Roboto';
+  font-size: 20px;
+}
