@@ -172,7 +172,9 @@ class Album extends Component {
                   {this.handleAudioBtnIcon(song, index)}
                 </td>
                 <td id="song-title-row">{song.title}</td>
-                <td id="song-duration-row">{song.duration}</td>
+                <td id="song-duration-row">
+                  {this.formatTime(parseFloat(song.duration))}
+                </td>
               </tr>
             ))}
           </tbody>
