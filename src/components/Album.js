@@ -107,6 +107,12 @@ class Album extends Component {
     this.setState({ currentTime: newTime });
   }
 
+  handleVolumeChange(e) {
+    const newVolume = e.target.value;
+    this.audioElement.volume = newVolume;
+    this.setState({ volume: newVolume });
+  }
+
   handleAudioBtnIcon(song, index) {
     const isSameSong = this.state.currentSong === song;
     if (this.state.isPlaying && isSameSong) {
@@ -117,6 +123,18 @@ class Album extends Component {
       return <span className="ion-play" />;
     } else {
       return <span className="song-number"> {index + 1} </span>;
+    }
+  }
+
+  formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.round(time % 60);
+    if (typeof time === 'number' && seconds < 10) {
+      return minutes + ':' + '0' + seconds;
+    } else if (typeof time === 'number' && seconds >= 10) {
+      return minutes + ':' + seconds;
+    } else {
+      return '-:--';
     }
   }
 
@@ -164,10 +182,13 @@ class Album extends Component {
           currentSong={this.state.currentSong}
           currentTime={this.audioElement.currentTime}
           duration={this.audioElement.duration}
+          currentVolume={this.state.currentVolume}
           handleSongClick={() => this.handleSongClick(this.state.currentSong)}
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={e => this.handleTimeChange(e)}
+          handleVolumeChange={e => this.handleVolumeChange(e)}
+          formatTime={e => this.formatTime(e)}
         />
       </section>
     );
